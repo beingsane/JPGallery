@@ -2,12 +2,14 @@
 Joomla Photographers Simple Gallery
 
 Simple Single view gallery plugin.
+
 *each gallery will be a single folder.
 *each gallery folder is unique to that gallery.
 *Completely Responsive.
 
 
 HOPEFULL GOALS will be to:
+
 *Powerful image manager.
 *Ability to sell photographs via paypal.
 *Runs on BS2, BS3 & BS4
