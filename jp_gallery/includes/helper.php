@@ -10,7 +10,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class SimpleImageGalleryHelper {
+class JoomlaPhotographersGalleryHelper {
 
 	public static function renderGallery($srcimgfolder, $thb_width, $thb_height, $smartResize, $jpg_quality, $cache_expire_time, $gal_id)
 	{
@@ -30,10 +30,10 @@ class SimpleImageGalleryHelper {
 		}
 
 		// Internal parameters
-		$prefix = "jw_sig_cache_";
+		$prefix = "jp_gallery_cache_";
 
 		// Set the cache folder
-		$cacheFolderPath = JPATH_SITE.DS.'cache'.DS.'jw_sig';
+		$cacheFolderPath = JPATH_SITE.DS.'cache'.DS.'jp_gallery';
 		if (file_exists($cacheFolderPath) && is_dir($cacheFolderPath))
 		{
 			// all OK
@@ -115,7 +115,7 @@ class SimpleImageGalleryHelper {
 						$source = @ imagecreatefromgif($original);
 						if (!$source)
 						{
-							JError::raiseNotice('', JText::_('JW_PLG_SIG_ERROR_GIFS'));
+							JError::raiseNotice('', JText::_('JP_PLG_GALLERY_ERROR_GIFS'));
 							return;
 						}
 						break;
@@ -132,7 +132,7 @@ class SimpleImageGalleryHelper {
 				// Bail out if the image resource is not OK
 				if (!$source)
 				{
-					JError::raiseNotice('', JText::_('JW_PLG_SIG_ERROR_SRC_IMGS'));
+					JError::raiseNotice('', JText::_('JP_PLG_GALLERY_ERROR_SRC_IMGS'));
 					return;
 				}
 
@@ -164,7 +164,7 @@ class SimpleImageGalleryHelper {
 			// Assemble the image elements
 			$gallery[$key]->filename = $filename;
 			$gallery[$key]->sourceImageFilePath = $siteUrl.$srcimgfolder.'/'.self::replaceWhiteSpace($filename);
-			$gallery[$key]->thumbImageFilePath = $siteUrl.'cache/jw_sig/'.$prefix.$gal_id.'_'.strtolower(self::cleanThumbName($thumbfilename));
+			$gallery[$key]->thumbImageFilePath = $siteUrl.'cache/jp_gallery/'.$prefix.$gal_id.'_'.strtolower(self::cleanThumbName($thumbfilename));
 			$gallery[$key]->width = $thb_width;
 			$gallery[$key]->height = $thb_height;
 

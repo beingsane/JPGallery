@@ -15,8 +15,8 @@ defined('_JEXEC') or die('Restricted access');
 <ul id="sigFreeId<?php echo $gal_id; ?>" class="sigFreeContainer sigFreeClassic<?php echo $extraWrapperClass; ?>">
 	<?php foreach($gallery as $count=>$photo): ?>
 	<li class="sigFreeThumb">
-		<a href="<?php echo $photo->sourceImageFilePath; ?>" class="sigFreeLink<?php echo $extraClass; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;" rel="<?php echo $relName; ?>[gallery<?php echo $gal_id; ?>]" title="<?php echo JText::_('JW_PLG_SIG_YOU_ARE_VIEWING').' '.$photo->filename; ?>" target="_blank"<?php echo $customLinkAttributes; ?>>
-			<img class="sigFreeImg" src="<?php echo $transparent; ?>" alt="<?php echo JText::_('JW_PLG_SIG_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" title="<?php echo JText::_('JW_PLG_SIG_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;background-image:url(<?php echo $photo->thumbImageFilePath; ?>);" />
+		<a href="<?php echo $photo->sourceImageFilePath; ?>" class="sigFreeLink<?php echo $extraClass; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;" rel="<?php echo $relName; ?>[gallery<?php echo $gal_id; ?>]" title="<?php echo JText::_('JP_PLG_GALLERY_YOU_ARE_VIEWING').' '.$photo->filename; ?>" target="_blank"<?php echo $customLinkAttributes; ?>>
+			<img class="sigFreeImg" src="<?php echo $transparent; ?>" alt="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" title="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;background-image:url(<?php echo $photo->thumbImageFilePath; ?>);" />
 		</a>
 	</li>
 	<?php endforeach; ?>
@@ -25,7 +25,7 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php if($itemPrintURL): ?>
 <div class="sigFreePrintMessage">
-	<?php echo JText::_('JW_PLG_SIG_PRINT_MESSAGE'); ?>:
+	<?php echo JText::_('JP_PLG_GALLERY_PRINT_MESSAGE'); ?>:
 	<br />
 	<a title="<?php echo $row->title; ?>" href="<?php echo $itemPrintURL; ?>"><?php echo $itemPrintURL; ?></a>
 </div>

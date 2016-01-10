@@ -11,19 +11,16 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.plugin.plugin');
-if (version_compare(JVERSION, '1.6.0', 'ge')){
-	jimport('joomla.html.parameter');
-}
 
-class plgContentJw_sig extends JPlugin {
+class plgContentJp_gallery extends JPlugin {
 
   // JoomlaWorks reference parameters
-	var $plg_name					= "jw_sig";
+	var $plg_name					= "jp_gallery";
 	var $plg_tag					= "gallery";
-	var $plg_copyrights_start		= "\n\n<!-- JoomlaWorks \"Simple Image Gallery\" Plugin (v3.0.1) starts here -->\n";
-	var $plg_copyrights_end			= "\n<!-- JoomlaWorks \"Simple Image Gallery\" Plugin (v3.0.1) ends here -->\n\n";
+	var $plg_copyrights_start		= "\n\n<!-- Joomla Photography \"Joomla Photographers Gallery\" Plugin starts here -->\n";
+	var $plg_copyrights_end			= "\n<!-- Joomla Photography \"Joomla Photographers Gallery\" Plugin ends here -->\n\n";
 
-	function plgContentJw_sig( &$subject, $params ){
+	function plgContentJp_gallery( $subject, $params ){
 		parent::__construct( $subject, $params );
 
 		// Define the DS constant under Joomla! 3.0+
@@ -32,18 +29,13 @@ class plgContentJw_sig extends JPlugin {
 		}
 	}
 
-	// Joomla! 1.5
-	function onPrepareContent(&$row, &$params, $page = 0){
-		$this->renderSimpleImageGallery($row, $params, $page = 0);
-	}
-
 	// Joomla! 2.5+
-	function onContentPrepare($context, &$row, &$params, $page = 0){
+	function onContentPrepare($context, $row, $params, $page = 0){
 		$this->renderSimpleImageGallery($row, $params, $page = 0);
 	}
 
 	// The main function
-	function renderSimpleImageGallery(&$row, &$params, $page = 0){
+	function renderSimpleImageGallery($row, $params, $page = 0){
 
 		// API
 		jimport('joomla.filesystem.file');
@@ -87,23 +79,12 @@ class plgContentJw_sig extends JPlugin {
 		JPlugin::loadLanguage('plg_content_'.$this->plg_name, JPATH_ADMINISTRATOR);
 
 		// Check for basic requirements
-		if (!extension_loaded('gd') && !function_exists('gd_info')){
-			JError::raiseNotice('', JText::_('JW_PLG_SIG_NOTICE_01'));
+		if (!extension_loaded('gd')  !function_exists('gd_info')){
+			JError::raiseNotice('', JText::_('JP_PLG_GALLERY_NOTICE_01'));
 			return;
 		}
 		if (!is_writable($sitePath.DS.'cache')){
-			JError::raiseNotice('', JText::_('JW_PLG_SIG_NOTICE_02'));
-			return;
-		}
-
-		// Check if Simple Image Gallery Pro is present and mute
-		if (JPluginHelper::isEnabled('content', 'jw_sigpro') == true){
-			return;
-		}
-
-		// Check if Simple Image Gallery Free (old) is present and show a warning
-		if (JPluginHelper::isEnabled('content', 'jw_simpleImageGallery') == true){
-			JError::raiseNotice('', JText::_('JW_PLG_SIG_NOTICE_OLD_SIG'));
+			JError::raiseNotice('', JText::_('JP_PLG_GALLERY_NOTICE_02'));
 			return;
 		}
 
@@ -169,19 +150,19 @@ class plgContentJw_sig extends JPlugin {
 					$galleryFolder 	= $tagcontent;
 				}
 
-				// HTML & CSS assignments
+				// HTML  CSS assignments
 				$srcimgfolder = $galleries_rootfolder.'/'.$galleryFolder;
 				$gal_id = substr(md5($key.$srcimgfolder), 1, 10);
 
 				// Render the gallery
-				$gallery = SimpleImageGalleryHelper::renderGallery($srcimgfolder, $thb_width, $thb_height, $smartResize, $jpg_quality, $cache_expire_time, $gal_id);
+				$gallery = JoomlaPhotographersGalleryHelper::renderGallery($srcimgfolder, $thb_width, $thb_height, $smartResize, $jpg_quality, $cache_expire_time, $gal_id);
 
 				if (!$gallery){
-					JError::raiseNotice('', JText::_('JW_PLG_SIG_NOTICE_03').' '.$srcimgfolder);
+					JError::raiseNotice('', JText::_('JP_PLG_GALLERY_NOTICE_03').' '.$srcimgfolder);
 					continue;
 				}
 
-				// CSS & JS includes: Append head includes, but not when we're outputing raw content (like in K2)
+				// CSS  JS includes: Append head includes, but not when we're outputing raw content (like in K2)
 				if (JRequest::getCmd('format') == '' || JRequest::getCmd('format') == 'html'){
 
 					// Initiate variables
@@ -194,7 +175,7 @@ class plgContentJw_sig extends JPlugin {
 					$popupPath = "{$pluginLivePath}/includes/js/{$popup_engine}";
 					$popupRequire = dirname(__FILE__).DS.$this->plg_name.DS.'includes'.DS.'js'.DS.$popup_engine.DS.'popup.php';
 
-					if (file_exists($popupRequire) && is_readable($popupRequire)){
+					if (file_exists($popupRequire)  is_readable($popupRequire)){
 						require ($popupRequire);
 					}
 
@@ -211,7 +192,7 @@ class plgContentJw_sig extends JPlugin {
 						foreach ($stylesheetDeclarations as $stylesheetDeclaration)
 							$document->addStyleDeclaration($stylesheetDeclaration);
 
-					if (strpos($popup_engine, 'jquery_') !== false && $jQueryHandling != 0){
+					if (strpos($popup_engine, 'jquery_') !== false  $jQueryHandling != 0){
 						if (version_compare(JVERSION, '3.0', 'ge')!==false){
 							JHtml::_('jquery.framework');
 						} else {
@@ -244,7 +225,7 @@ class plgContentJw_sig extends JPlugin {
 					if ($customLinkAttributes)
 						$customLinkAttributes = ' '.$customLinkAttributes;
 
-					$pluginCSS = SimpleImageGalleryHelper::getTemplatePath($this->plg_name, 'css/template.css', $thb_template);
+					$pluginCSS = JoomlaPhotographersGalleryHelper::getTemplatePath($this->plg_name, 'css/template.css', $thb_template);
 					$pluginCSS = $pluginCSS->http;
 					$document->addStyleSheet($pluginCSS, 'text/css', 'screen');
 
@@ -252,7 +233,7 @@ class plgContentJw_sig extends JPlugin {
 					$document->addStyleSheet($pluginLivePath.'/includes/css/print.css', 'text/css', 'print');
 
 					// Message to show when printing an article/item with a gallery
-					$websiteURL = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https://".$_SERVER['HTTP_HOST'] : "http://".$_SERVER['HTTP_HOST'];
+					$websiteURL = (!empty($_SERVER['HTTPS'])  $_SERVER['HTTPS'] != "off") ? "https://".$_SERVER['HTTP_HOST'] : "http://".$_SERVER['HTTP_HOST'];
 					$itemPrintURL = $websiteURL.$_SERVER['REQUEST_URI'];
 					$itemPrintURL = explode("#", $itemPrintURL);
 					$itemPrintURL = $itemPrintURL[0].'#sigFreeId'.$gal_id;
@@ -262,7 +243,7 @@ class plgContentJw_sig extends JPlugin {
 
 				// Fetch the template
 				ob_start();
-				$templatePath = SimpleImageGalleryHelper::getTemplatePath($this->plg_name, 'default.php', $thb_template);
+				$templatePath = JoomlaPhotographersGalleryHelper::getTemplatePath($this->plg_name, 'default.php', $thb_template);
 				$templatePath = $templatePath->file;
 				include ($templatePath);
 				$getTemplate = $this->plg_copyrights_start.ob_get_contents().$this->plg_copyrights_end;

@@ -39,7 +39,7 @@ if(!defined('PE_FANCYBOX_LOADED')){
 					buttons	: {}
 				},
 				afterLoad : function() {
-					this.title = \'<b class="fancyboxCounter">'.JText::_('JW_PLG_SIG_FB_IMAGE').' \' + (this.index + 1) + \' '.JText::_('JW_PLG_SIG_FB_OF').' \' + this.group.length + \'</b>\' + (this.title ? \' | \' + this.title : \'\');
+					this.title = \'<b class="fancyboxCounter">'.JText::_('JP_PLG_GALLERY_FB_IMAGE').' \' + (this.index + 1) + \' '.JText::_('JP_PLG_GALLERY_FB_OF').' \' + this.group.length + \'</b>\' + (this.title ? \' | \' + this.title : \'\');
 				}
 			});
 		});
