@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.4" type="plugin" group="content" method="upgrade">
+	<name>Joomla Photographers Gallery</name>
+	<author>N6REJ</author>
+	<authorEmail>bear@joomla.photography</authorEmail>
+	<authorUrl>http://joomla.photography</authorUrl>
+	<copyright>Copyright (c) 2016 Joomla Photography All rights reserved.</copyright>
+	<creationDate>January 10th, 2016</creationDate>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>A2</version>
+	<description>PLG_JPGALLERY_XML_DESC</description>
+	<!-- Parameters -->
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="galleries_rootfolder" type="text" default="images" label="PLG_JPGALLERY_ROOTFOLDER" description="PLG_JPGALLERY_ROOTFOLDER_DESC" />
+				<field name="thb_width" type="text" default="200" size="3" label="PLG_JPGALLERY_TW" description="PLG_JPGALLERY_TW_DESC" />
+				<field name="thb_height" type="text" default="160" size="3" label="PLG_JPGALLERY_TH" description="PLG_JPGALLERY_TH_DESC" />
+				<field name="jpg_quality" type="text" default="80" size="3" label="PLG_JPGALLERY_TQ" description="PLG_JPGALLERY_TQ_DESC" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="cache_expire_time" type="text" default="1440" size="3" label="PLG_JPGALLERY_TCEXP" description="PLG_JPGALLERY_TCEXP_DESC" />
+				<field name="memoryLimit" type="text" default="" size="3" label="PLG_JPGALLERY_ML" description="PLG_JPGALLERY_ML_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+	<!-- Files -->
+	<files>
+		<filename plugin="jpgallery">jpgallery.php</filename>
+		<filename plugin="jpgallery">jpgallery.xml</filename>
+		<folder>includes</folder>
+		<folder>tmpl</folder>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_content_jpgallery.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_jpgallery.sys.ini</language>
+	</languages>
+	<updateservers>
+		<server type="extension" priority="1" name="Simple Image Gallery">http://www.joomlaworks.net/updates/jpgallery.xml</server>
+	</updateservers>
+</extension>
