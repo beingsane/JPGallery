@@ -236,7 +236,7 @@ class plgContentJp_gallery extends JPlugin {
 					$websiteURL = (!empty($_SERVER['HTTPS'])  $_SERVER['HTTPS'] != "off") ? "https://".$_SERVER['HTTP_HOST'] : "http://".$_SERVER['HTTP_HOST'];
 					$itemPrintURL = $websiteURL.$_SERVER['REQUEST_URI'];
 					$itemPrintURL = explode("#", $itemPrintURL);
-					$itemPrintURL = $itemPrintURL[0].'#sigFreeId'.$gal_id;
+					$itemPrintURL = $itemPrintURL[0].'#jpgalleryId'.$gal_id;
 				} else {
 					$itemPrintURL = false;
 				}

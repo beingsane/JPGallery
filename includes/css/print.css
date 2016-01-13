@@ -8,6 +8,6 @@
 
 /* This stylesheet is used to hide galleries on page print outs */
 @media print {
-	.sigFreeContainer {display:none;}
-	.sigFreePrintMessage {display:block;color:#999;font-size:14px;padding:8px 0;}
+	.jpgalleryContainer {display:none;}
+	.jpgalleryPrintMessage {display:block;color:#999;font-size:14px;padding:8px 0;}
 }

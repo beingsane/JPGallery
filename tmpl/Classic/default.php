@@ -12,19 +12,19 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 
-<ul id="sigFreeId<?php echo $gal_id; ?>" class="sigFreeContainer sigFreeClassic<?php echo $extraWrapperClass; ?>">
+<ul id="jpgalleryId<?php echo $gal_id; ?>" class="jpgalleryContainer jpgalleryClassic<?php echo $extraWrapperClass; ?>">
 	<?php foreach($gallery as $count=>$photo): ?>
-	<li class="sigFreeThumb">
-		<a href="<?php echo $photo->sourceImageFilePath; ?>" class="sigFreeLink<?php echo $extraClass; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;" rel="<?php echo $relName; ?>[gallery<?php echo $gal_id; ?>]" title="<?php echo JText::_('JP_PLG_GALLERY_YOU_ARE_VIEWING').' '.$photo->filename; ?>" target="_blank"<?php echo $customLinkAttributes; ?>>
-			<img class="sigFreeImg" src="<?php echo $transparent; ?>" alt="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" title="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;background-image:url(<?php echo $photo->thumbImageFilePath; ?>);" />
+	<li class="jpgalleryThumb">
+		<a href="<?php echo $photo->sourceImageFilePath; ?>" class="jpgalleryLink<?php echo $extraClass; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;" rel="<?php echo $relName; ?>[gallery<?php echo $gal_id; ?>]" title="<?php echo JText::_('JP_PLG_GALLERY_YOU_ARE_VIEWING').' '.$photo->filename; ?>" target="_blank"<?php echo $customLinkAttributes; ?>>
+			<img class="jpgalleryImg" src="<?php echo $transparent; ?>" alt="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" title="<?php echo JText::_('JP_PLG_GALLERY_CLICK_TO_ENLARGE_IMAGE').' '.$photo->filename; ?>" style="width:<?php echo $photo->width; ?>px;height:<?php echo $photo->height; ?>px;background-image:url(<?php echo $photo->thumbImageFilePath; ?>);" />
 		</a>
 	</li>
 	<?php endforeach; ?>
-	<li class="sigFreeClear">&nbsp;</li>
+	<li class="jpgalleryClear">&nbsp;</li>
 </ul>
 
 <?php if($itemPrintURL): ?>
-<div class="sigFreePrintMessage">
+<div class="jpgalleryPrintMessage">
 	<?php echo JText::_('JP_PLG_GALLERY_PRINT_MESSAGE'); ?>:
 	<br />
 	<a title="<?php echo $row->title; ?>" href="<?php echo $itemPrintURL; ?>"><?php echo $itemPrintURL; ?></a>
